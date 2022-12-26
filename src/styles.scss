@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primaryColor: #5827B9;
+
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.toolbar {
+    align-items: center;
+    background-color: $primaryColor;
+    color: white;
+    display: flex;
+    font-weight: 600;
+    height: 60px;
+}

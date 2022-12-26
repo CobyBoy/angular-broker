@@ -1,0 +1,73 @@
+@use '../../styles.scss'as globalStyles;
+
+:host {
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.card {
+    background-color: #fafafa;
+    border-radius: 12px;
+    box-shadow: 2px 4px 20px -3px #605c5c;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 280px;
+    padding: 2rem;
+    width: 320px;
+}
+
+.header {
+    padding: 0px;
+    gap: 0;
+    text-align: center;
+}
+
+.submit {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding: 0;
+    gap: 0;
+}
+
+.btn {
+    background-color: globalStyles.$primaryColor;
+    border-radius: 4px;
+    border-style: none;
+    color: white;
+    min-width: 5rem;
+    font-size: 1em;
+    padding: 0.5rem;
+    cursor: pointer;
+
+    &:disabled {
+        cursor: not-allowed;
+        background-color: globalStyles.$primaryColor;
+        opacity: 0.4;
+    }
+}
+
+.formInput {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.forgotPassword {
+    padding: 7px;
+}
+
+.invalid {
+    display: block;
+    color: red;
+}
+
+.valid {
+    display: none;
+}

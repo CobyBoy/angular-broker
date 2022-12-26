@@ -1,0 +1,22 @@
+<form class="card" (submit)="onLoginSubmitForm($event)"
+[formGroup]="loginForm"
+>
+    <div class="header">
+        <h1>Log in</h1>
+    </div>
+    <input type="email" name="email" id="email" placeholder="Enter your email" class="formInput" formControlName="email">
+    <span 
+    [ngClass]="getFormControls('email').errors?.['required'] && getFormControls('email').touched ? 'invalid' : 'valid'">This field is required</span>
+    <span
+    [ngClass]="getFormControls('email').invalid && loginForm.invalid && getFormControls('email').touched ? 'invalid' : 'valid'">Please enter a valid email</span>
+
+    <input type="password" name="password" id="password" placeholder="Enter your password" class="formInput" formControlName="password">
+    <span 
+    [ngClass]="getFormControls('password').errors?.['required'] && getFormControls('password').touched ? 'invalid' : 'valid'">This field is required</span>
+    <span 
+    [ngClass]="getFormControls('password').invalid && getFormControls('password').touched ? 'invalid' : 'valid'">This field has errors</span>
+    <div class="submit">
+        <span class="forgotPassword">Forgot your password?</span>
+        <button type="submit" class="btn" [disabled]="loginForm.invalid">Log in</button>
+    </div>
+</form>

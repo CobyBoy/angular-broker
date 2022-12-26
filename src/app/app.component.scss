@@ -1,0 +1,22 @@
+@use '../styles.scss'as globalStyles;
+
+:host {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 14px;
+    color: #333;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    @include globalStyles.flexCenter;
+    flex: 1;
+    padding: 0 16px;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+}
