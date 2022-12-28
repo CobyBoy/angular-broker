@@ -15,7 +15,7 @@
 .content {
     @include globalStyles.flexCenter;
     flex: 1;
-    padding: 0 16px;
+    padding: 0 1rem;
     flex-direction: column;
     align-self: center;
     width: 100%;

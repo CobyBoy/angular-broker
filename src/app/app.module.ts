@@ -7,8 +7,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { TerminalComponent } from './terminal/terminal.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { LoginModule } from './login/login.module';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from './auth/auth.module';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     TerminalComponent,
     FooterComponent,
     NotFoundComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LoginModule
+    HttpClientModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
