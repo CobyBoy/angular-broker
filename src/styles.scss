@@ -43,3 +43,40 @@ a {
         color: #D9D3E6
     }
 }
+
+/*Headers*/
+.toolbar {
+    align-items: center;
+    background-color: $primaryColor;
+    color: white;
+    display: flex;
+    font-weight: 600;
+    height: 100%;
+    padding: 0 1rem;
+    width: 100%;
+
+    &__homelink {
+        cursor: pointer;
+    }
+
+    &__nav {
+        height: 100%;
+    }
+
+    &__list {
+        display: flex;
+        height: 100%;
+        justify-content: space-around;
+        width: -moz-available;
+    }
+
+    &__btn {
+        border: 1px solid white;
+        margin: 0 10px;
+    }
+
+    &__spacer {
+        width: calc(100% - 47%); //For Chrome
+        width: -moz-available; //For Mozilla
+    }
+}
