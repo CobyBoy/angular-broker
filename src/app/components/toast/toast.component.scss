@@ -1,0 +1,32 @@
+:host {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 2rem;
+}
+
+.toast {
+  border: 1px solid;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 1rem;
+  color: white;
+  font-weight: 700;
+  transition: ease 2s;
+
+  &__error {
+    background-color: #BD362F;
+  }
+
+  &__info {
+    background-color: #2F96B4;
+  }
+
+  &__success {
+    background-color: #51A351;
+  }
+
+  &__warning {
+    background-color: #F89406;
+  }
+}
