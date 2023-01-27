@@ -1,0 +1,62 @@
+<form class="form" (submit)="onLoginSubmitForm($event)" [formGroup]="loginForm">
+  <input
+    type="email"
+    name="email"
+    id="email"
+    placeholder="Enter your email"
+    class="form__input"
+    formControlName="email"
+  />
+  <span
+    [ngClass]="getFormControls('email').errors?.['required'] && getFormControls('email').touched ? 'form__invalid' : 'form__valid'"
+    >This field is required</span
+  >
+  <span
+    [ngClass]="
+      getFormControls('email').invalid &&
+      loginForm.invalid &&
+      getFormControls('email').touched
+        ? 'form__invalid'
+        : 'form__valid'
+    "
+  >
+    Please enter a valid email</span
+  >
+  <div class="input__container">
+    <input
+      [type]="isEyeIconOpen ? 'text' : 'password'"
+      name="password"
+      id="password"
+      placeholder="Enter your password"
+      class="form__input"
+      formControlName="password"
+    />
+    <span (click)="viewPassword()" class="eye-icon"
+      ><i [ngClass]="isEyeIconOpen ? 'fa fa-eye' : 'fa fa-eye-slash'"></i
+    ></span>
+  </div>
+
+  <span
+    [ngClass]="getFormControls('password').errors?.['required'] && getFormControls('password').touched ? 'form__invalid' : 'form__valid'"
+    >This field is required</span
+  >
+  <span
+    [ngClass]="
+      getFormControls('password').invalid && getFormControls('password').touched
+        ? 'form__invalid'
+        : 'form__valid'
+    "
+    >This field has errors</span
+  >
+  <div class="form__submit">
+    <span class="links-text">Forgot your password?</span>
+    <button type="submit" [disabled]="loginForm.invalid" id="loginButton">
+      Log in
+    </button>
+  </div>
+  <div class="form__options">OR</div>
+  <div id="buttonDiv"></div>
+  <div class="form__options">
+    <button><a routerLink="/">Create an account</a></button>
+  </div>
+</form>

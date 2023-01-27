@@ -1,0 +1,64 @@
+@use '../../../styles.scss'as globalStyles;
+
+:host {
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    min-width: 280px;
+    padding: 2rem;
+    width: 320px;
+
+    &__header {
+        text-align: center;
+    }
+
+    &__input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 12px;
+        width: 100%;
+    }
+
+    &__invalid {
+        visibility: visible;
+        color: red;
+        font-size: .75rem;
+        line-height: .75rem;
+    }
+
+    &__options {
+        text-align: center;
+        padding: 7px;
+    }
+
+    &__submit {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__valid {
+        visibility: hidden;
+        font-size: .75rem;
+        line-height: .75rem;
+    }
+}
+
+.eye-icon {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    right: -14rem;
+    top: -1.7rem;
+}
+
+.input__container {
+    height: 2.8rem;
+}
