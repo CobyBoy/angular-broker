@@ -1,0 +1,15 @@
+<main class="content">
+  <app-main-header></app-main-header>
+  <div style="display: flex; height: 100%;">
+    <app-sidebar></app-sidebar>
+    <section
+      style="display: flex; flex-direction: column; width: 100%; flex: 1; background-color: #eeeeee;"
+    >
+      <div style="height: 100%">
+        <router-outlet></router-outlet>
+      </div>
+    </section>
+  </div>
+
+  <app-main-footer></app-main-footer>
+</main>

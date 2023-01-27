@@ -1,0 +1,11 @@
+@use '../../../styles.scss' as globalStyles;
+
+:host {
+  display: flex;
+  flex: 1;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+}
