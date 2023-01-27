@@ -1,0 +1,42 @@
+:host {
+  width: 15%;
+  display: block;
+}
+
+.sidebar {
+  background-color: #fafafa;
+  box-shadow: 2px 4px 10px -3px #605c5c;
+  height: 100%;
+
+  &__item {
+    cursor: pointer;
+  }
+
+  &__title {
+    display: flex;
+    padding: 10px;
+
+    &:hover {
+      background-color: #DFCFFF;
+    }
+  }
+
+  &__text {
+    padding-left: 1rem;
+    &:hover {
+      color: inherit;
+    }
+  }
+}
+
+.dropdown {
+  padding: 0 2.5rem;
+
+  &__item {
+    line-height: 2rem;
+  }
+
+  &__list--hidden {
+    display: none;
+  }
+}
