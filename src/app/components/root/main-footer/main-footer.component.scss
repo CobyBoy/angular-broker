@@ -1,0 +1,15 @@
+@use '../../../../styles.scss' as globalStyles;
+
+:host {
+  display: block;
+}
+
+footer {
+  align-items: flex-start;
+  background-color: globalStyles.$primaryColor;
+  color: white;
+  display: flex;
+  font-weight: 600;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
