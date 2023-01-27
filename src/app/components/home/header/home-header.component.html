@@ -1,0 +1,47 @@
+<header class="toolbar">
+  <a routerLink="/" class="toolbar__homelink">Home</a>
+  <nav class="toolbar__nav">
+    <ul class="toolbar__list list">
+      <li class="list__item">
+        <p class="list__title">Nosotros</p>
+        <ul class="dropdown dropdown__list">
+          <li *ngFor="let el of nosotrosList" class="dropdown__item">
+            <a [href]="el.link">{{ el.item }}</a>
+          </li>
+        </ul>
+      </li>
+
+      <li class="list__item">
+        <p class="list__title">Cotizaciones</p>
+        <ul class="dropdown__list">
+          <li *ngFor="let el of cotizacionesList" class="dropdown__item">
+            <a [href]="el.link">{{ el.item }}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="list__item">
+        <p class="list__title">Research</p>
+        <ul class="dropdown__list">
+          <li *ngFor="let el of researchList" class="dropdown__item">
+            <a [href]="el.link">{{ el.item }}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="list__item">
+        <p class="list__title">Inversiones</p>
+        <ul class="dropdown__list">
+          <li *ngFor="let el of inversionesList" class="dropdown__item">
+            <a [href]="el.link">{{ el.item }}</a>
+          </li>
+        </ul>
+      </li>
+      <li class="list__item"><p class="list__title"><a href="https://portfoliopersonal.com/Contacto">Contacto</a></p></li>
+    </ul>
+  </nav>
+  <div class="toolbar__spacer"></div>
+  <div class="buttons__container">
+    <button type="button" class="toolbar__btn" routerLink="/register">
+      &gt; Sign In / Sign Up
+    </button>
+  </div>
+</header>

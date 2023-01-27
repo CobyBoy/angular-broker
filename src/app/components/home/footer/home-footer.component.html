@@ -1,0 +1,42 @@
+<footer class="footer">
+  <ul class="footer__list list">
+    <h3 class="list__h3">Nosotros</h3>
+    <li *ngFor="let el of nosotrosList" class="list__item">
+      <a [href]="el.link" target="_blank" rel="noopener noreferrer">{{
+        el.item
+      }}</a>
+    </li>
+  </ul>
+  <ul class="footer__list list">
+    <h3 class="list__h3">Cotizaciones</h3>
+    <li *ngFor="let el of cotizacionesList" class="list__item">
+      <a [href]="el.link" target="_blank" rel="noopener noreferrer">{{
+        el.item
+      }}</a>
+    </li>
+  </ul>
+  <ul class="footer__list list">
+    <h3 class="list__h3">Research</h3>
+    <li *ngFor="let el of researchList" class="list__item">
+      <a [href]="el.link" target="_blank" rel="noopener noreferrer">
+        {{ el.item }}</a
+      >
+    </li>
+  </ul>
+  <ul class="footer__list list">
+    <h3 class="list__h3">Inversiones</h3>
+    <li *ngFor="let el of inversionesList" class="list__item">
+      <a [href]="el.link" target="_blank" rel="noopener noreferrer">{{
+        el.item
+      }}</a>
+    </li>
+  </ul>
+  <ul class="footer__list list">
+    <h3 class="list__h3">Contacto</h3>
+    <li *ngFor="let el of contactoList" class="list__item">
+      <a [href]="el.link" target="_blank" rel="noopener noreferrer">{{
+        el.item
+      }}</a>
+    </li>
+  </ul>
+</footer>

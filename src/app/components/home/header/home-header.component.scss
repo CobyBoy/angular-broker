@@ -1,0 +1,48 @@
+@use '../../../../styles.scss'as globalStyles;
+
+:host {
+    display: block;
+    height: 4rem;
+}
+
+.list__item {
+    display: flex;
+    font-weight: inherit;
+    padding: 0 1rem;
+
+    &:hover {
+        background-color: #6431C8;
+        cursor: pointer;
+
+        .dropdown__list {
+            display: block;
+        }
+    }
+}
+
+.list__title {
+    align-self: center;
+}
+
+.dropdown {
+    &__list {
+        display: none;
+        position: absolute;
+        background-color: globalStyles.$primaryColor;
+        width: 15%;
+        margin-top: 1rem;
+        padding: 0 1rem 1rem 1rem;
+        transform: translate(-16.5px, 47.6px);
+        box-shadow: 0px 23px 26px -6px rgba(0, 0, 0, 0.75);
+    }
+
+    &__item {
+        line-height: 2rem;
+    }
+}
+
+.buttons__container {
+    display: flex;
+    justify-content: flex-end;
+    width: -moz-available;
+}
