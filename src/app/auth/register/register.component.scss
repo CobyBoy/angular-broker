@@ -1,0 +1,28 @@
+:host {
+  min-height: 550px;
+}
+
+.form__card {
+  box-shadow: 2px 4px 20px -3px #605c5c;
+  background-color: #fafafa;
+  margin: auto;
+  max-width: 25rem;
+  min-width: 280px;
+  height: auto;
+}
+
+.form__title {
+  display: flex;
+  cursor: pointer;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.form__title--active {
+  border-bottom: 1px solid;
+  padding-bottom: 20px;
+}
+
+.form__title--inactive {
+  width: 50%;
+}

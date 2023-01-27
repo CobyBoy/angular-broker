@@ -1,0 +1,9 @@
+<div class="form__card">
+  <div class="form__title">
+    <span #signIn (click)="getTab(signIn.innerHTML)" class="form__title--inactive" [ngClass]="selectedTab == signIn.innerHTML ? 'form__title--active' : ''">Sign In</span>
+    <span #signUp (click)="getTab(signUp.innerHTML)" class="form__title--inactive" [ngClass]="selectedTab == signUp.innerHTML ? 'form__title--active' : ''">Sign Up</span>
+  </div>
+
+  <app-sign-in *ngIf="selectedTab == signIn.innerHTML"></app-sign-in>
+  <app-sign-up *ngIf="selectedTab == signUp.innerHTML"></app-sign-up>
+</div>
