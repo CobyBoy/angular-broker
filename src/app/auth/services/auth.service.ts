@@ -4,6 +4,7 @@ import { Credentials } from 'src/app/models/credentials';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthenticationResponse } from 'src/app/models/authentication-response';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -13,14 +14,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  signUp(user: User): Observable<any> {
+    console.warn(user)
+    const url = `${environment.host}/auth/register`;
+    return this.http.post<any>(url, user)
+    return of({})
+  }
+
   logIn(credentials: Credentials): Observable<any> {
     console.warn('credentials', credentials);
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     //return of(true)
     return this.http
-      .post<AuthenticationResponse>(`${this.url}`, credentials, {
-        headers: headers,
-      })
+      .post<AuthenticationResponse>(`${this.url}`, credentials)
       .pipe(
         tap((response) => console.log(response)),
         shareReplay()

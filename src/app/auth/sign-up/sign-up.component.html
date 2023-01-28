@@ -1,4 +1,23 @@
-<form class="form" (submit)="onLoginSubmitForm($event)" [formGroup]="loginForm">
+<form class="form" (submit)="onSignUp($event)" [formGroup]="loginForm">
+  <input
+    type="text"
+    name="username"
+    class="form__input"
+    placeholder="Choose an username"
+    id="username"
+    formControlName="username"
+  />
+  <span
+    [ngClass]="getFormControls('username').errors?.['required'] && getFormControls('username').touched ? 'form__invalid' : 'form__valid'"
+  >
+    This field is required
+  </span>
+  <span
+    [ngClass]="getFormControls('username').invalid && loginForm.invalid && getFormControls('username').touched ? 'form__invalid': 'form__valid'"
+  >
+    Please enter a valid username
+  </span>
+
   <input
     type="email"
     name="email"
@@ -9,19 +28,13 @@
   />
   <span
     [ngClass]="getFormControls('email').errors?.['required'] && getFormControls('email').touched ? 'form__invalid' : 'form__valid'"
-    >This field is required</span
-  >
+    >This field is required
+  </span>
   <span
-    [ngClass]="
-      getFormControls('email').invalid &&
-      loginForm.invalid &&
-      getFormControls('email').touched
-        ? 'form__invalid'
-        : 'form__valid'
-    "
+    [ngClass]="getFormControls('email').invalid && loginForm.invalid && getFormControls('email').touched ? 'form__invalid' : 'form__valid'"
   >
-    Please enter a valid email</span
-  >
+    Please enter a valid email
+  </span>
   <div class="input__container">
     <input
       [type]="isEyeIconOpen ? 'text' : 'password'"
@@ -31,24 +44,56 @@
       class="form__input"
       formControlName="password"
     />
-    <span (click)="viewPassword()" class="eye-icon"
-      ><i [ngClass]="isEyeIconOpen ? 'fa fa-eye' : 'fa fa-eye-slash'"></i
-    ></span>
+    <span (click)="viewPassword()" class="eye-icon">
+      <i [ngClass]="isEyeIconOpen ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+    </span>
   </div>
 
   <span
     [ngClass]="getFormControls('password').errors?.['required'] && getFormControls('password').touched ? 'form__invalid' : 'form__valid'"
-    >This field is required</span
+    >
+    This field is required
+  </span
   >
   <span
-    [ngClass]="
-      getFormControls('password').invalid && getFormControls('password').touched
-        ? 'form__invalid'
-        : 'form__valid'
-    "
-    >This field has errors</span
+    [ngClass]="getFormControls('password').invalid && getFormControls('password').touched ? 'form__invalid': 'form__valid'"
+    >
+    This field has errors
+  </span>
+  <div class="input__container">
+    <input
+      [type]="isEyeIconOpenForConfirmPassword ? 'text' : 'password'"
+      name="confirmPassword"
+      class="form__input"
+      placeholder="Confirm your password"
+      id="confirmPassword"
+      formControlName="confirmPassword"
+    />
+    <span (click)="viewConfirmPassword()" class="eye-icon">
+      <i [ngClass]="isEyeIconOpenForConfirmPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+    </span>
+  </div>
+
+  <span
+    [ngClass]="getFormControls('confirmPassword').errors?.['required'] && getFormControls('confirmPassword').touched ? 'form__invalid' : 'form__valid'"
   >
+    This field is required
+  </span>
+  <span
+    [ngClass]="
+      getFormControls('confirmPassword').invalid && getFormControls('confirmPassword').touched ? 'form__invalid': 'form__valid'"
+    >
+    This field has errors
+    </span>
+  <span
+    [ngClass]="
+      getFormControls('confirmPassword').touched && !arePasswordsEqual? 'form__invalid': 'form__valid'"
+  >
+    Password don't match!
+  </span>
   <div class="form__options">
-    <button [disabled]="loginForm.invalid">Create an account</button>
+    <button [disabled]="loginForm.invalid || !arePasswordsEqual">
+      Create an account
+    </button>
   </div>
 </form>
