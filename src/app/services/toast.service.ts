@@ -1,4 +1,4 @@
-import { Injectable, SecurityContext, Type } from '@angular/core';
+import { Injectable, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastComponent } from 'src/app/components/toast/toast.component';
 
@@ -6,19 +6,19 @@ import { ToastComponent } from 'src/app/components/toast/toast.component';
   providedIn: 'root',
 })
 export class ToastService {
-  private toast!: ToastComponent;
+  private toastComponent!: ToastComponent;
   private sanitizedMessage!: string | null;
   private sanitizedTitle!: string | null;
   constructor(private sanitizer: DomSanitizer) {}
 
   createToastComponent(component: ToastComponent) {
-    this.toast = component;
+    this.toastComponent = component;
   }
 
   error(message: string, title?: string) {
     this.sanitizedMessage = this.sanitizeMessage(message);
-    if(title) this.sanitizedTitle = this.sanitizeMessage(title);
-    this.toast.error(this.sanitizedMessage, this.sanitizedTitle);
+    if (title) this.sanitizedTitle = this.sanitizeMessage(title);
+    this.toastComponent.error(this.sanitizedMessage, this.sanitizedTitle);
   }
 
   sanitizeMessage(message: string) {
