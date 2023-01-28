@@ -17,7 +17,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         console.warn(error);
-        if (error.error.title) this.toastService.error(error.error.title);
+        if (error.status == 0) this.toastService.error("Internal Server Error " + error.statusText);
         else this.toastService.error(error.error.message);
         return throwError(() => error);
       })
