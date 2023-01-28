@@ -6,6 +6,7 @@
     placeholder="Choose an username"
     id="username"
     formControlName="username"
+    pattern="^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z0-9]{3,10}$"
   />
   <span
     [ngClass]="getFormControls('username').errors?.['required'] && getFormControls('username').touched ? 'form__invalid' : 'form__valid'"
@@ -15,7 +16,7 @@
   <span
     [ngClass]="getFormControls('username').invalid && loginForm.invalid && getFormControls('username').touched ? 'form__invalid': 'form__valid'"
   >
-    Please enter a valid username
+    Please enter a valid username(letters and numbers)
   </span>
 
   <input
@@ -45,6 +46,7 @@
       placeholder="Enter your password"
       class="form__input"
       formControlName="password"
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,}$"
     />
     <span (click)="viewPassword()" class="eye-icon">
       <i [ngClass]="isEyeIconOpen ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
@@ -73,6 +75,7 @@
       placeholder="Confirm your password"
       id="confirmPassword"
       formControlName="confirmPassword"
+      pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,}$"
     />
     <span (click)="viewConfirmPassword()" class="eye-icon">
       <i [ngClass]="isEyeIconOpenForConfirmPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
@@ -98,8 +101,16 @@
   </span>
   </div>
   </div>
-  <input type="tel" name="areaCode" id="areaCode" placeholder="(Cód Area)" class="form__input" formControlName="areaCode"  maxlength="4">
-  <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="(Número sin 0 ni 15)" class="form__input" formControlName="phoneNumber" maxlength="8" #phoneNumber>
+  <input type="tel" name="areaCode" id="areaCode" placeholder="(Cód Area)" class="form__input" formControlName="areaCode"  maxlength="4" pattern="[0-9]+">
+  <span
+    [ngClass]="getFormControls('areaCode').errors?.['required'] && getFormControls('areaCode').touched ? 'form__invalid' : 'form__valid'"
+    >This field is required
+  </span>
+  <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="(Número sin 0 ni 15)" class="form__input" formControlName="phoneNumber" maxlength="8" #phoneNumber pattern="[0-9]+">
+  <span
+    [ngClass]="getFormControls('phoneNumber').errors?.['required'] && getFormControls('phoneNumber').touched ? 'form__invalid' : 'form__valid'"
+    >This field is required
+  </span>
   
   <div class="form__options">
     <button [disabled]="loginForm.invalid || !arePasswordsEqual">
