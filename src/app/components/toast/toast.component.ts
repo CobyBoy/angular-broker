@@ -16,9 +16,10 @@ export class ToastComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  success(message: string | null) {
+  success(message: string | null, title?: string | null) {
     const type = 'success';
     this.message = message;
+    this.title = title;
     this.isToastVisible = !this.isToastVisible;
     this.buildToast(type);
     this.hideToast();

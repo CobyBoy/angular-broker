@@ -21,6 +21,12 @@ export class ToastService {
     this.toastComponent.error(this.sanitizedMessage, this.sanitizedTitle);
   }
 
+  success(message: string, title?: string) {
+    this.sanitizedMessage = this.sanitizeMessage(message);
+    if (title) this.sanitizedTitle = this.sanitizeMessage(title);
+    this.toastComponent.success(this.sanitizedMessage, this.sanitizedTitle);
+  }
+
   sanitizeMessage(message: string) {
     return this.sanitizer.sanitize(SecurityContext.HTML, message);
   }
