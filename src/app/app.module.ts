@@ -7,13 +7,13 @@ import { HomeHeaderComponent } from './components/home/header/home-header.compon
 import { TerminalComponent } from './components/terminal/terminal.component';
 import { HomeFooterComponent } from './components/home/footer/home-footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthModule } from './auth/auth.module';
 import { HomeComponent } from './components/home/home.component';
 import { RootModule } from './components/root/root.module';
 import { SharedModule } from './shared/shared.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastComponent } from './components/toast/toast.component';
+import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
+import { HeaderInterceptor } from './interceptors/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,6 @@ import { ToastComponent } from './components/toast/toast.component';
     HomeFooterComponent,
     NotFoundComponent,
     HomeComponent,
-    ToastComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,10 +30,16 @@ import { ToastComponent } from './components/toast/toast.component';
     HttpClientModule,
     AuthModule,
     RootModule,
-    SharedModule,
-    BrowserAnimationsModule
+    SharedModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHandlerInterceptor,
+      multi: true,
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
