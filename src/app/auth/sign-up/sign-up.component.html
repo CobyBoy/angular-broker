@@ -35,7 +35,9 @@
   >
     Please enter a valid email
   </span>
-  <div class="input__container">
+  <div>
+    <div>
+    <div class="input__container">
     <input
       [type]="isEyeIconOpen ? 'text' : 'password'"
       name="password"
@@ -60,7 +62,10 @@
     >
     This field has errors
   </span>
-  <div class="input__container">
+
+  </div>
+  <div>
+<div class="input__container">
     <input
       [type]="isEyeIconOpenForConfirmPassword ? 'text' : 'password'"
       name="confirmPassword"
@@ -91,6 +96,11 @@
   >
     Password don't match!
   </span>
+  </div>
+  </div>
+  <input type="tel" name="areaCode" id="areaCode" placeholder="(Cód Area)" class="form__input" formControlName="areaCode"  maxlength="4">
+  <input type="tel" name="phoneNumber" id="phoneNumber" placeholder="(Número sin 0 ni 15)" class="form__input" formControlName="phoneNumber" maxlength="8" #phoneNumber>
+  
   <div class="form__options">
     <button [disabled]="loginForm.invalid || !arePasswordsEqual">
       Create an account

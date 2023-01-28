@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Constants } from 'src/app/shared/constants';
 import { AuthService } from '../services/auth.service';
 import { ToastService } from '../../services/toast.service';
 import { GlobalService } from 'src/app/services/global.service';
+import { UserDto } from 'src/app/models/user';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,6 +12,7 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
+  @ViewChild('phoneNumber') phoneNumber!: ElementRef;
   loginForm!: FormGroup;
   isEyeIconOpen: boolean = false;
   isEyeIconOpenForConfirmPassword: boolean = false;
@@ -27,10 +28,14 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.createForm();
-    this.arePasswordsEqual = this.loginForm.controls['password'].value === this.loginForm.controls['confirmPassword'].value
-    this.loginForm.valueChanges.subscribe((_d) => {
-      this.arePasswordsEqual = _d.password === _d.confirmPassword;
-      
+    this.arePasswordsEqual =
+      this.loginForm.controls['password'].value ===
+      this.loginForm.controls['confirmPassword'].value;
+    this.loginForm.valueChanges.subscribe((control) => {
+      this.arePasswordsEqual = control.password === control.confirmPassword;
+      if (control.areaCode.length == 4) {
+        this.phoneNumber.nativeElement.focus();
+      }
     });
     console.log(this.loginForm);
   }
@@ -56,33 +61,20 @@ export class SignUpComponent implements OnInit {
         Validators.minLength(4),
         Validators.maxLength(16),
       ]),
+      areaCode: new FormControl('011', [
+        Validators.required,
+        Validators.maxLength(4),
+      ]),
+      phoneNumber: new FormControl('64479914', [
+        Validators.required,
+        Validators.maxLength(8),
+      ]),
     });
   }
 
   getFormControls(control: string) {
     return this.loginForm.controls[control];
   }
-
-  /*   onLoginSubmitForm(_event: SubmitEvent) {
-    Object.values(this.loginForm.controls).forEach((control) => {
-      control.markAllAsTouched();
-    });
-    if (this.loginForm.invalid) return;
-    this.authService.logIn(this.loginForm.value).subscribe({
-      next: (response) => {
-        const jwtToken = response.token;
-        console.log(response);
-        this.router.navigate(['/terminal']);
-        if (!jwtToken) return;
-        localStorage.setItem(Constants.JWT_TOKEN, jwtToken);
-        this.router.navigate(['/terminal']);
-      },
-      error: (error) => {
-        console.info(error);
-        this.toastService.error(error.message, error.error.title);
-      },
-    });
-  } */
 
   onSignUp(_event: SubmitEvent) {
     this.globalService.$isLoading.next(true);
@@ -91,14 +83,18 @@ export class SignUpComponent implements OnInit {
     });
     console.log(this.loginForm.invalid);
     if (this.loginForm.invalid) return;
-    this.authService.signUp(this.loginForm.value).subscribe({
+    // put together areacode + phoneNumber
+    Object.assign(this.loginForm.value, { ...this.loginForm.value, phoneNumber: this.loginForm.value.areaCode + this.loginForm.value.phoneNumber });
+    // get rid of areaCode
+    const { areaCode, ...values } = this.loginForm.value
+    this.authService.signUp(values as UserDto).subscribe({
       next: (response) => {
         this.globalService.$isLoading.next(false);
-        console.log('resposne', response);
+        this.toastService.success(response.message);
       },
       error: (error) => {
         this.globalService.$isLoading.next(false);
-        console.error('error', error);
+        console.warn('error', error);
       },
     });
   }
