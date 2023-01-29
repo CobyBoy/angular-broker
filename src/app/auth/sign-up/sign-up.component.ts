@@ -89,14 +89,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
     });
     console.log(this.loginForm.invalid);
     if (this.loginForm.invalid) return;
-    this.globalService.$isLoading.next(true);
     this.authService.signUp(this.loginForm.value as UserDto) .subscribe({
       next: (response) => {
-        this.globalService.$isLoading.next(false);
         this.toastService.success(response.message);
       },
       error: (error) => {
-        this.globalService.$isLoading.next(false);
         console.warn('error', error);
       },
     });

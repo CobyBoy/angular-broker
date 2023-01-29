@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Constants } from '../../shared/constants';
+import { ToastService } from 'src/app/services/toast.service';
+import { GlobalService } from 'src/app/services/global.service';
 declare var google: any;
 
 @Component({
@@ -15,7 +17,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
   isEyeIconOpen: boolean = false;
   fieldRequiredText = 'This field is required';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private toastService: ToastService) {}
 
   ngOnInit(): void {
     this.loginForm = this.createForm();
@@ -45,11 +47,11 @@ export class SignInComponent implements OnInit, AfterViewInit {
 
   createForm(): FormGroup {
     return new FormGroup({
-      email: new FormControl('aboutacoby@gmail.com', [
+      email: new FormControl('abouta@gmail.com', [
         Validators.email,
         Validators.required,
       ]),
-      password: new FormControl('1234', [
+      password: new FormControl('@Cc1234', [
         Validators.minLength(4),
         Validators.required,
       ]),
@@ -68,9 +70,9 @@ export class SignInComponent implements OnInit, AfterViewInit {
     if (this.loginForm.invalid) return;
     this.authService.logIn(this.loginForm.value).subscribe({
       next: (response) => {
+        this.toastService.success(response.message);  
         const jwtToken = response.token;
         console.log(response);
-        this.router.navigate(['/account']);
         if (!jwtToken) return;
         localStorage.setItem(Constants.JWT_TOKEN, jwtToken);
         this.router.navigate(['/account']);
