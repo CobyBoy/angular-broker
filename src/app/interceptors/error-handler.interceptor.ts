@@ -7,19 +7,18 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { ToastService } from '../services/toast.service';
+import { ErrorHandlerService } from '../services/error-handler.service';
 
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
-  constructor(private toastService: ToastService) {}
+  constructor(private errorHandlerService: ErrorHandlerService) {}
 
   intercept(request: HttpRequest<unknown>,next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         console.warn(error);
-        if (error.status == 0) this.toastService.error("Internal Server Error " + error.statusText);
-        else this.toastService.error(error.error.message);
-        return throwError(() => error);
+        this.errorHandlerService.handleStatusError(error);
+        return throwError(() => error.statusText);
       })
     );
   }

@@ -14,6 +14,7 @@ import { RootModule } from './components/root/root.module';
 import { SharedModule } from './shared/shared.module';
 import { ErrorHandlerInterceptor } from './interceptors/error-handler.interceptor';
 import { HeaderInterceptor } from './interceptors/header.interceptor';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HeaderInterceptor } from './interceptors/header.interceptor';
       multi: true,
     },
     { provide: HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
